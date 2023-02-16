@@ -2,9 +2,9 @@
 data "yandex_client_config" "client" {}
 
 locals {
-  pre-configured_cloud_id  = data.yandex_client_config.client.cloud_id
-  pre-configured_folder_id = data.yandex_client_config.client.folder_id
-  folder_id                = (var.create_folder ? yandex_resourcemanager_folder.main-folder[0].id : local.pre-configured_folder_id)
+  # del - pre-configured_cloud_id  = data.yandex_client_config.client.cloud_id
+  # del - pre-configured_folder_id = data.yandex_client_config.client.folder_id
+  folder_id                = (var.create_folder ? yandex_resourcemanager_folder.main-folder[0].id : data.yandex_client_config.client.folder_id)
   required_tags = {
     project = var.project_name,
     environment = var.environment
@@ -19,7 +19,7 @@ resource "yandex_resourcemanager_folder" "main-folder" {
   description = "create new folder in the pre-configured yc cloud"
   count       = var.create_folder ? 1 : 0
   name        = "${var.project_name}-project"
-  cloud_id    = local.pre-configured_cloud_id
+  cloud_id    = data.yandex_client_config.client.cloud_id
 }
 
 #----- create vpc -----
