@@ -1,6 +1,5 @@
 # Get attributes used by provider to configure client connection.
 data "yandex_client_config" "client" {}
-data "yandex_vpc_network" "admin" {}
 
 locals {
   # del - pre-configured_cloud_id  = data.yandex_client_config.client.cloud_id
@@ -32,7 +31,7 @@ resource "yandex_vpc_network" "main-vpc" {
   folder_id   = local.folder_id
   labels      = local.tags
 
-  depends_on = [yandex_resourcemanager_folder.main-folder]
+  # depends_on = [local.folder_id]
 }
 # #------ create subnet -----
 # resource "yandex_vpc_subnet" "main-subnet-a" {

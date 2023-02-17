@@ -41,7 +41,7 @@ variable "create_vpc" {
 
 variable "vpc_id" {
   type = string
-  default = "enp1e1spaeafs4fiimfe"
+  default = " "
 }
 
 
