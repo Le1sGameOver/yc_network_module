@@ -40,8 +40,20 @@ variable "create_vpc" {
 }
 
 variable "vpc_id" {
+  description = "Enter vpc_id. Default value = default in YC"
   type = string
   default = " "
+}
+
+variable "yc_availability_zones" {
+    description = "list of  yc availability zones"
+    type = list
+    default = [
+        "ru-central1-a",
+        "ru-central1-b",
+        "ru-central1-c"
+    ]
+  
 }
 
 
