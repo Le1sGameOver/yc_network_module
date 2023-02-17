@@ -1,6 +1,7 @@
 # default create_folder = false
 create_folder = true
-project_name = "hd"
-environment = "prod"
+#create_vpc = true
+project_name  = "main"
+environment   = "prod"
 
 #default resource tags = {project = "hd", enviroment = "dev"}

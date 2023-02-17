@@ -1,8 +1,8 @@
 #----- labels for yc resources -----
 variable "project_name" {
   description = "project name"
-  type = string
-  default = "main"
+  type        = string
+  default     = "main"
   # regexall return the COUNT of how many matches the regex found 0 == 0 > true
   validation {
     condition     = length(var.project_name) <= 8 && length(regexall("[^a-zA-Z0-9-]", var.project_name)) == 0
@@ -12,8 +12,8 @@ variable "project_name" {
 
 variable "environment" {
   description = "type of environment"
-  type = string
-  default = "dev"
+  type        = string
+  default     = "dev"
   # regexall return the COUNT of how many matches the regex found 0 == 0 > true
   validation {
     condition     = length(var.environment) <= 8 && length(regexall("[^a-zA-Z0-9-]", var.environment)) == 0
@@ -24,7 +24,7 @@ variable "environment" {
 variable "resource_tags" {
   description = "label for fast identity some project_names "
   type        = map(string)
-  default = { }
+  default     = {}
 }
 
 variable "create_folder" {
@@ -33,11 +33,16 @@ variable "create_folder" {
   default     = false
 }
 
+variable "create_vpc" {
+  description = "create new folder. default: false"
+  type        = bool
+  default     = false
+}
 
-# variable "vpc_name" {
-#   description = "name of vpc"
-#   type = string
-# }
+variable "vpc_id" {
+  type = string
+  default = "enp1e1spaeafs4fiimfe"
+}
 
 
 
