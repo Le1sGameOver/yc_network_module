@@ -26,7 +26,7 @@ resource "yandex_resourcemanager_folder" "main-folder" {
 #----- create vpc -----
 resource "yandex_vpc_network" "main-vpc" {
   description = "create new vpc in curent folder"
-  count = var.create_vpc ? 1 : 0
+  count       = var.create_vpc ? 1 : 0
   name        = "${local.name_prefix}-vpc"
   folder_id   = local.folder_id
   labels      = local.tags

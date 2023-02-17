@@ -5,5 +5,5 @@ output "labels" {
 
 output "zones" {
   description = "zones"
-  value = data.yandex_client_config.client.zone
+  value       = data.yandex_client_config.client.zone
 }
