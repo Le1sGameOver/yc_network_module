@@ -47,7 +47,7 @@ variable "vpc_id" {
 
 variable "yc_availability_zones" {
   description = "list of  yc availability zones"
-  type        = list(any)
+  type        = set(string) # it doesn't support duplicate values!!!
   default = [
     "ru-central1-a",
     "ru-central1-b",

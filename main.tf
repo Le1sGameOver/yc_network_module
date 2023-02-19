@@ -33,12 +33,13 @@ resource "yandex_vpc_network" "main-vpc" {
 
   # depends_on = [local.folder_id]
 }
-# #------ create subnet -----
-# resource "yandex_vpc_subnet" "main-subnet-a" {
-#   description    = "<описание подсети>"
-#   name           = "<имя подсети>"
-#   v4_cidr_blocks = ["<IPv4-адрес>"]
-#   zone           = "<зона доступности>"
-#   network_id     = local.vpc_id
-#   labels      = local.tags
-# }
+#------ create subnet -----
+resource "yandex_vpc_subnet" "main-subnet" {
+  description    = "<описание подсети>"
+  name           = "<имя подсети>"
+  v4_cidr_blocks = ["<IPv4-адрес>"]
+  for_each = var.yc_availability_zones
+  zone           = "each.value"
+  network_id     = local.vpc_id
+  labels      = local.tags
+}
