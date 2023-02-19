@@ -31,15 +31,20 @@ resource "yandex_vpc_network" "main-vpc" {
   folder_id   = local.folder_id
   labels      = local.tags
 
-  # depends_on = [local.folder_id]
+#  lifecycle {
+#     precondition {
+#       condition     = length(yandex_vpc_network.main-vpc.name) >= 3 && length(yandex_vpc_network.main-vpc.name) <=63 && length(regexall("[^a-zA-Z0-9-]", var.environment)) == 0
+#       error_message = "The environment tag must be between 3 and 63 characters, and only contain letters, numbers, and hyphens.ue"
+#     }
+#  }
 }
 #------ create subnet -----
 resource "yandex_vpc_subnet" "main-subnet" {
   description    = "<описание подсети>"
   name           = "<имя подсети>"
   v4_cidr_blocks = ["<IPv4-адрес>"]
-  for_each = var.yc_availability_zones
-  zone           = "each.value"
+ 
+  zone           = "${element(var.yc_availability_zones, count.index)}"
   network_id     = local.vpc_id
   labels      = local.tags
 }

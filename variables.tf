@@ -24,7 +24,7 @@ variable "environment" {
 variable "resource_tags" {
   description = "label for fast identity some project_names "
   type        = map(string)
-  default     = {}
+  default     = { }
 }
 
 variable "create_folder" {
