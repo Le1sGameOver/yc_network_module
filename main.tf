@@ -38,9 +38,10 @@ resource "yandex_vpc_network" "main-vpc" {
   #   }
   # }
 }
-#------ create subnet -----
+#------ create private subnet -----
 resource "yandex_vpc_subnet" "private-subnet" {
   description    = "<описание подсети>"
+  count = var.subnet_per_zone * length(var.yc_availability_zones)
   name           = "test-subnet"
   v4_cidr_blocks = var.private_subnet_cidr_blocks
   zone       = "ru-central1-a"

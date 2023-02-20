@@ -64,5 +64,11 @@ variable "private_subnet_cidr_blocks" {
   }
 }
 
+# variable "subnet_per_zone" {
+#   description = "Number of subnets in each zone"
+#   type = number
+#   default = 1
+# }
+
 
 
