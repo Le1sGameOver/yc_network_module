@@ -31,20 +31,32 @@ resource "yandex_vpc_network" "main-vpc" {
   folder_id   = local.folder_id
   labels      = local.tags
 
-#  lifecycle {
-#     precondition {
-#       condition     = length(yandex_vpc_network.main-vpc.name) >= 3 && length(yandex_vpc_network.main-vpc.name) <=63 && length(regexall("[^a-zA-Z0-9-]", var.environment)) == 0
-#       error_message = "The environment tag must be between 3 and 63 characters, and only contain letters, numbers, and hyphens.ue"
-#     }
-#  }
+  # lifecycle {
+  #   precondition {
+  #     condition     = length(name) >= 3 && length(name) <= 63 && length(regexall("[^a-zA-Z0-9-]", name)) == 0
+  #     error_message = "The environment tag must be between 3 and 63 characters, and only contain letters, numbers, and hyphens.ue"
+  #   }
+  # }
 }
 #------ create subnet -----
-resource "yandex_vpc_subnet" "main-subnet" {
+resource "yandex_vpc_subnet" "private-subnet" {
   description    = "<описание подсети>"
-  name           = "<имя подсети>"
-  v4_cidr_blocks = ["<IPv4-адрес>"]
- 
-  zone           = "${element(var.yc_availability_zones, count.index)}"
-  network_id     = local.vpc_id
-  labels      = local.tags
+  name           = "test-subnet"
+  v4_cidr_blocks = var.private_subnet_cidr_blocks
+  zone       = "ru-central1-a"
+  network_id = local.vpc_id
+  #route_table_id = yandex_vpc_route_table.rt.id
+  # dhcp_options {
+  #   domain_name = skytechnic.aero
+  #   domain_name_servers = 
+  #   ntp_servers = 
+  # }
+  labels     = local.tags
+  lifecycle {
+    precondition {
+      condition     = var.create_vpc != false || local.vpc_id != ""
+      error_message = "var.create_vpc must be true || var.vpc_id must be defined"
+    }
+  }
+  
 }
