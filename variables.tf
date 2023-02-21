@@ -48,27 +48,21 @@ variable "vpc_id" {
 variable "yc_availability_zones" {
   description = "list of  yc availability zones"
   type        = list(any) # it doesn't support duplicate values!!!
-  default = [
-    "ru-central1-a",
-    "ru-central1-b",
-    "ru-central1-c"
-  ]
+  default = []
 }
-variable "private_subnet_cidr_blocks" {
-  description = "Available cidr blocks for private subnets"
-  type = list(string)
-  default = null
-  validation {
-    condition = var.private_subnet_cidr_blocks != []
-    error_message = "Please add a value for the variable var.private_subnet_cidr_blocks"
-  }
-}
+# --------- test -------------
 
-# variable "subnet_per_zone" {
-#   description = "Number of subnets in each zone"
-#   type = number
-#   default = 1
+# variable "subnets" {
+#   type = map(object ({
+#     cidr_blocks = string
+#     subnets = map(object({ cidr_blocks = string}))
+#   }))
 # }
 
-
+variable "subnet_settings" {
+  type = object ({
+    cidr_blocks = string
+    avt_zones = list(string)
+  })
+}
 
