@@ -24,7 +24,7 @@ variable "environment" {
 variable "resource_tags" {
   description = "label for fast identity some project_names "
   type        = map(string)
-  default     = { }
+  default     = {}
 }
 
 variable "create_folder" {
@@ -42,14 +42,27 @@ variable "create_vpc" {
 variable "vpc_id" {
   description = "Enter vpc_id. Default value = default in YC"
   type        = string
-  default     = " "
+  default     = ""
 }
 
 variable "yc_availability_zones" {
-  description = "set of  yc availability zones"
-  type        = set(string) # it doesn't support duplicate values!!!
+  description = "list of  yc availability zones"
+  type        = list(any) # it doesn't support duplicate values!!!
   default = []
 }
+# --------- test -------------
 
+# variable "subnets" {
+#   type = map(object ({
+#     cidr_blocks = string
+#     subnets = map(object({ cidr_blocks = string}))
+#   }))
+# }
 
+variable "subnet_settings" {
+  type = object ({
+    cidr_blocks = string
+    avt_zones = list(string)
+  })
+}
 

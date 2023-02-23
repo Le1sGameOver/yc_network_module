@@ -2,8 +2,6 @@
 data "yandex_client_config" "client" {}
 
 locals {
-  # del - pre-configured_cloud_id  = data.yandex_client_config.client.cloud_id
-  # del - pre-configured_folder_id = data.yandex_client_config.client.folder_id
   folder_id = (var.create_folder ? yandex_resourcemanager_folder.main-folder[0].id : data.yandex_client_config.client.folder_id)
   vpc_id    = (var.create_vpc ? yandex_vpc_network.main-vpc[0].id : var.vpc_id)
   required_tags = {
@@ -31,20 +29,43 @@ resource "yandex_vpc_network" "main-vpc" {
   folder_id   = local.folder_id
   labels      = local.tags
 
-#  lifecycle {
-#     precondition {
-#       condition     = length(yandex_vpc_network.main-vpc.name) >= 3 && length(yandex_vpc_network.main-vpc.name) <=63 && length(regexall("[^a-zA-Z0-9-]", var.environment)) == 0
-#       error_message = "The environment tag must be between 3 and 63 characters, and only contain letters, numbers, and hyphens.ue"
-#     }
-#  }
+  # lifecycle {
+  #   precondition {
+  #     condition     = length(name) >= 3 && length(name) <= 63 && length(regexall("[^a-zA-Z0-9-]", name)) == 0
+  #     error_message = "The environment tag must be between 3 and 63 characters, and only contain letters, numbers, and hyphens.ue"
+  #   }
+  # }
 }
-#------ create subnet -----
-resource "yandex_vpc_subnet" "main-subnet" {
-  description    = "<описание подсети>"
-  name           = "<имя подсети>"
-  v4_cidr_blocks = ["<IPv4-адрес>"]
- 
-  zone           = "${element(var.yc_availability_zones, count.index)}"
-  network_id     = local.vpc_id
-  labels      = local.tags
+# ------ create subnet -----
+# resource "yandex_vpc_subnet" "private-subnet" {
+#   description    = "Create subnet for existing or new VPC, if var.create_vpc = true"
+#   name           = "test"
+#   v4_cidr_blocks = ["10.2.0.0/16"]
+#   zone       = "ru-central1-a"
+#   network_id = local.vpc_id
+#   #route_table_id = yandex_vpc_route_table.rt.id
+#   dynamic dhcp_options {
+#     for_each = ""
+#     content {
+#       domain_name = ""
+#       domain_name_servers = ""
+#       ntp_servers = ""
+#     }
+#   }
+#   labels     = local.tags
+#   lifecycle {
+#     precondition {
+#       condition     = var.create_vpc != false || local.vpc_id != ""
+#       error_message = "var.create_vpc must be true || var.vpc_id must be defined"
+#     }
+#   }
+# }
+
+#-------- test zone ------
+resource "yandex_vpc_subnet" "private-subnet" {
+  description    = "Create subnet for existing or new VPC, if var.create_vpc = true"
+  name           = ""
+  network_id = local.vpc_id
+  v4_cidr_blocks = ""
+  zone = ""
 }

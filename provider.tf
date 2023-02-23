@@ -8,4 +8,4 @@ terraform {
   }
 }
 
-# export YC_TOKEN=$(yc iam create-token)\n export YC_CLOUD_ID=$(yc config get cloud-id)\n export YC_FOLDER_ID=$(yc config get folder-id)\n
+# export YC_TOKEN=$(yc iam create-token)\n export YC_CLOUD_ID=$(yc config get cloud-id)\n export YC_FOLDER_ID=$(yc config get folder-id)
