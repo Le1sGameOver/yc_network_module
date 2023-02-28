@@ -10,6 +10,13 @@ locals {
   }
   tags        = merge(var.resource_tags, local.required_tags)
   name_prefix = "${var.project_name}-${var.environment}"
+  # --------- test zone -----------------
+  simple_subnets = [
+    for val in var.subnet_designer:
+    val
+  ]
+  # --------- end test zone -------------
+
 }
 
 
@@ -61,11 +68,11 @@ resource "yandex_vpc_network" "main-vpc" {
 #   }
 # }
 
-#-------- test zone ------
-resource "yandex_vpc_subnet" "private-subnet" {
-  description    = "Create subnet for existing or new VPC, if var.create_vpc = true"
-  name           = ""
-  network_id = local.vpc_id
-  v4_cidr_blocks = ""
-  zone = ""
-}
+# #-------- test zone ------
+# resource "yandex_vpc_subnet" "private-subnet" {
+#   description    = "Create subnet for existing or new VPC, if var.create_vpc = true"
+#   name           = "test"
+#   network_id = local.vpc_id
+#   v4_cidr_blocks = ""
+#   zone = ""
+# }

@@ -45,24 +45,16 @@ variable "vpc_id" {
   default     = ""
 }
 
+# --------- test zone -----------------
 variable "yc_availability_zones" {
   description = "list of  yc availability zones"
   type        = list(any) # it doesn't support duplicate values!!!
   default = []
 }
-# --------- test -------------
 
-# variable "subnets" {
-#   type = map(object ({
-#     cidr_blocks = string
-#     subnets = map(object({ cidr_blocks = string}))
-#   }))
-# }
-
-variable "subnet_settings" {
-  type = object ({
-    cidr_blocks = string
-    avt_zones = list(string)
-  })
+variable "subnet_designer" {
+  type = map(object({
+    zones_value = list(string)
+  }))
 }
-
+# --------- end test zone -------------

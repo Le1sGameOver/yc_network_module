@@ -3,7 +3,3 @@ output "active_labels" {
   value       = local.tags
 }
 
-output "zones" {
-  description = "test"
-  value = ""
-}
