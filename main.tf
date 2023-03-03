@@ -11,9 +11,37 @@ locals {
   tags        = merge(var.resource_tags, local.required_tags)
   name_prefix = "${var.project_name}-${var.environment}"
   # --------- test zone -----------------
-  simple_subnets = [
-    for val in var.subnet_designer:
-    val
+  # simple_subnets = [
+  #   for key, val in var.subnet_designer: {
+  #     key = key
+  #     yc_zones = val.zones_value
+  #   }
+  # ]
+  networks = [
+    for key, network in var.networks : {
+      key        = key
+      cidr_block = network.base_cidr_block
+    }
+  ]
+  subnets = [
+    for key, subnet in var.subnets : {
+      key    = key
+      number = subnet.number
+    }
+  ]
+
+  network_subnets = [
+    # in pair, element zero is a network and element one is a subnet,
+    # in all unique combinations.
+    for pair in setproduct(local.networks, local.subnets) : {
+      network_key = pair[0].key
+      subnet_key  = pair[1].key
+      
+
+      # The cidr_block is derived from the corresponding network. Refer to the
+      # cidrsubnet function for more information on how this calculation works.
+      cidr_block = cidrsubnet(pair[0].cidr_block, 4, pair[1].number)
+    }
   ]
   # --------- end test zone -------------
 
@@ -68,11 +96,14 @@ resource "yandex_vpc_network" "main-vpc" {
 #   }
 # }
 
-# #-------- test zone ------
-# resource "yandex_vpc_subnet" "private-subnet" {
-#   description    = "Create subnet for existing or new VPC, if var.create_vpc = true"
-#   name           = "test"
-#   network_id = local.vpc_id
-#   v4_cidr_blocks = ""
-#   zone = ""
-# }
+#-------- test zone ------
+resource "yandex_vpc_subnet" "private-subnet" {
+  description    = "Create subnet for existing or new VPC, if var.create_vpc = true"
+    for_each = {
+    for subnet in local.network_subnets : "${subnet.network_key}.${subnet.subnet_key}" => subnet
+  }
+  name            = "${var.project_name}-${each.value.subnet_key}"
+  network_id      = local.vpc_id
+  v4_cidr_blocks  = [each.value.cidr_block]
+  zone            = each.value.subnet_key
+}
