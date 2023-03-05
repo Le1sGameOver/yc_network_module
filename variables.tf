@@ -2,7 +2,7 @@
 variable "project_name" {
   description = "project name"
   type        = string
-  default     = "main"
+  default     = ""
   # regexall return the COUNT of how many matches the regex found 0 == 0 > true
   validation {
     condition     = length(var.project_name) <= 8 && length(regexall("[^a-zA-Z0-9-]", var.project_name)) == 0
@@ -13,7 +13,7 @@ variable "project_name" {
 variable "environment" {
   description = "type of environment"
   type        = string
-  default     = "dev"
+  default     = ""
   # regexall return the COUNT of how many matches the regex found 0 == 0 > true
   validation {
     condition     = length(var.environment) <= 8 && length(regexall("[^a-zA-Z0-9-]", var.environment)) == 0
@@ -47,7 +47,8 @@ variable "vpc_id" {
 
 variable "networks" {
   description = "map из базовых сетей для распределения в зонах доступности"
-  type = map(object({base_cidr_block = string
+  type = map(object({
+    base_cidr_block = string
   }))
 }
 variable "subnets" {

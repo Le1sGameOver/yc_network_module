@@ -10,16 +10,7 @@ resource_tags = {
 # create_folder = true
 create_vpc = true
 vpc_id       = ""
-yc_availability_zones = [ "ru-central1-a", "ru-central1-b", "ru-central1-c" ]
-# v4_cidr_blocks = [ "10.22.0.0/24", "10.22.1.0/24", "10.22.2.0/24" ]
-
-
-
-
-#default resource tags = {project = "hd", enviroment = "dev"}
-
-### test zone
-# --------- test zone -----------------
+# subnet variables
 networks = {
   private = {
     base_cidr_block = "10.10.0.0/20"
@@ -39,6 +30,9 @@ subnets = {
     number = 3
   }
 }
+
+# --------- test zone -----------------
+
 # --------- end test zone -------------
 
 
