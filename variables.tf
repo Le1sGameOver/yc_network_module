@@ -45,22 +45,21 @@ variable "vpc_id" {
   default     = ""
 }
 
+variable "networks" {
+  description = "map из базовых сетей для распределения в зонах доступности"
+  type = map(object({base_cidr_block = string
+  }))
+}
+variable "subnets" {
+  description = "map из значений подсетей для базовых сетей из var.networks"
+  type = map(object({
+    number = number
+  }))
+}
 # --------- test zone -----------------
 variable "yc_availability_zones" {
   description = "list of  yc availability zones"
   type        = list(string) # it doesn't support duplicate values!!!
   default = []
-}
-####
-variable "networks" {
-  type = map(object({
-    base_cidr_block = string
-  }))
-}
-
-variable "subnets" {
-  type = map(object({
-    number = number
-  }))
 }
 # --------- end test zone -------------
