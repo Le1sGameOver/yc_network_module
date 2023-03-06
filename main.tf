@@ -10,7 +10,8 @@ locals {
   }
   tags        = merge(var.resource_tags, local.required_tags)
   name_prefix = "${var.project_name}-${var.environment}"
-  #
+  # setproduct works with sets and lists, but the variables are both maps
+  # so convert them first.
   networks = [
     for key, network in var.networks : {
       key = key
