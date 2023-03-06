@@ -61,6 +61,6 @@ variable "subnets" {
 variable "yc_availability_zones" {
   description = "list of  yc availability zones"
   type        = list(string) # it doesn't support duplicate values!!!
-  default = []
+  default     = []
 }
 # --------- end test zone -------------

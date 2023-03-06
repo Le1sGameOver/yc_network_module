@@ -1,6 +1,6 @@
 ### --- below vars needs for local.required_tags creation ---
 project_name = "hd"
-environment = "prod"
+environment  = "prod"
 ### --- end of vars for local.required_tags creation ---
 resource_tags = {
   author = "a.kharkin@skytechnic.aero"
@@ -9,7 +9,7 @@ resource_tags = {
 ### default create_folder = false
 # create_folder = true
 create_vpc = true
-vpc_id       = ""
+vpc_id     = ""
 # subnet variables
 networks = {
   private = {

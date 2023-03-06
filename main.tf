@@ -14,8 +14,8 @@ locals {
   # so convert them first.
   networks = [
     for key, network in var.networks : {
-      key = key
-      cidr_block  = network.base_cidr_block
+      key        = key
+      cidr_block = network.base_cidr_block
     }
   ]
   subnets = [
@@ -32,7 +32,7 @@ locals {
       subnet_key  = pair[1].key
       # The cidr_block is derived from the corresponding network. Refer to the
       # cidrsubnet function for more information on how this calculation works.
-      
+
       cidr_block = cidrsubnet(pair[0].cidr_block, 4, pair[1].number)
     }
   ]
@@ -63,14 +63,14 @@ resource "yandex_vpc_network" "main-vpc" {
 }
 # ------ create subnet -----
 resource "yandex_vpc_subnet" "subnet_creation" {
-  description    = "Create subnet for existing or new VPC, if var.create_vpc = true"
+  description = "Create subnet for existing or new VPC, if var.create_vpc = true"
   for_each = {
     for subnet in local.network_subnets : "${subnet.network_key}.${subnet.subnet_key}" => subnet
   }
   name           = "${each.value.network_key}-${each.value.subnet_key}-${var.project_name}"
   v4_cidr_blocks = [each.value.cidr_block]
-  zone       = each.value.subnet_key
-  network_id = local.vpc_id
+  zone           = each.value.subnet_key
+  network_id     = local.vpc_id
   #route_table_id = yandex_vpc_route_table.rt.id
   # dynamic dhcp_options {
   #   for_each = ""
@@ -80,7 +80,7 @@ resource "yandex_vpc_subnet" "subnet_creation" {
   #     ntp_servers = ""
   #   }
   # }
-  labels     = local.tags
+  labels = local.tags
   lifecycle {
     precondition {
       condition     = var.create_vpc != false || local.vpc_id != ""
