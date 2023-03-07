@@ -42,7 +42,7 @@ No modules.
 
 | Name | Description |
 |------|-------------|
-| <a name="output_active_labels"></a> [active\_labels](#output\_active\_labels) | lables that you are created |
+| <a name="output_project_active_labels"></a> [project\_active\_labels](#output\_project\_active\_labels) | lables that you are created |
 | <a name="output_project_folder_id"></a> [project\_folder\_id](#output\_project\_folder\_id) | id of existing or created folder |
 | <a name="output_project_subnets_id"></a> [project\_subnets\_id](#output\_project\_subnets\_id) | id's of created subnets |
 | <a name="output_project_vpc_id"></a> [project\_vpc\_id](#output\_project\_vpc\_id) | id of existing or created vpc |
