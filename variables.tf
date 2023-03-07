@@ -51,8 +51,8 @@ variable "networks" {
     base_cidr_block = string
   }))
   default = {}
-  }
 }
+
 variable "subnets" {
   description = "map из значений подсетей для базовых сетей из var.networks"
   type = map(object({
