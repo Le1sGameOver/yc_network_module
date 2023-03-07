@@ -1,5 +1,5 @@
 # Lables
-output "active_labels" {
+output "project_active_labels" {
   description = "lables that you are created"
   value       = local.tags
 }
