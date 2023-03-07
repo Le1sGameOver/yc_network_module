@@ -36,8 +36,6 @@ locals {
       cidr_block = cidrsubnet(pair[0].cidr_block, 4, pair[1].number)
     }
   ]
-  # --------- test zone -----------------
-  # --------- end test zone -------------
 }
 #----- create folder -----
 resource "yandex_resourcemanager_folder" "main-folder" {

@@ -50,17 +50,24 @@ variable "networks" {
   type = map(object({
     base_cidr_block = string
   }))
+  default = {}
+  }
 }
 variable "subnets" {
   description = "map из значений подсетей для базовых сетей из var.networks"
   type = map(object({
     number = number
   }))
+  default = {
+    "ru-central1-a" = {
+      number = 1
+    }
+    "ru-central1-b" = {
+      number = 2
+    }
+    "ru-central1-c" = {
+      number = 3
+    }
+  }
 }
-# --------- test zone -----------------
-variable "yc_availability_zones" {
-  description = "list of  yc availability zones"
-  type        = list(string) # it doesn't support duplicate values!!!
-  default     = []
-}
-# --------- end test zone -------------
+
