@@ -65,7 +65,7 @@ resource "yandex_vpc_subnet" "subnet_creation" {
   for_each = {
     for subnet in local.network_subnets : "${subnet.network_key}.${subnet.subnet_key}" => subnet
   }
-  name           = "${each.value.network_key}-${each.value.subnet_key}-${var.project_name}"
+  name           = "${each.value.network_key}-${each.value.subnet_key}"
   v4_cidr_blocks = [each.value.cidr_block]
   zone           = each.value.subnet_key
   network_id     = local.vpc_id

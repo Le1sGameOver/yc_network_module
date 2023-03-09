@@ -10,7 +10,7 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_yandex"></a> [yandex](#provider\_yandex) | >= 0.8 |
+| <a name="provider_yandex"></a> [yandex](#provider\_yandex) | 0.86.0 |
 
 ## Modules
 
