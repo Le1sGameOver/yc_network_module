@@ -32,11 +32,11 @@ No modules.
 | <a name="input_create_folder"></a> [create\_folder](#input\_create\_folder) | create new folder. default: false | `bool` | `false` | no |
 | <a name="input_create_vpc"></a> [create\_vpc](#input\_create\_vpc) | create new folder. default: false | `bool` | `false` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | type of environment | `string` | `""` | no |
-| <a name="input_networks"></a> [networks](#input\_networks) | map из базовых сетей для распределения в зонах доступности | <pre>map(object({<br>    base_cidr_block = string<br>  }))</pre> | `{}` | no |
+| <a name="input_networks"></a> [networks](#input\_networks) | map for base network subnets | <pre>map(object({<br>    base_cidr_block = string<br>  }))</pre> | `{}` | no |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | project name | `string` | `""` | no |
 | <a name="input_resource_tags"></a> [resource\_tags](#input\_resource\_tags) | label for fast identity some project\_names | `map(string)` | `{}` | no |
-| <a name="input_subnets"></a> [subnets](#input\_subnets) | map из значений подсетей для базовых сетей из var.networks | <pre>map(object({<br>    number = number<br>  }))</pre> | <pre>{<br>  "ru-central1-a": {<br>    "number": 1<br>  },<br>  "ru-central1-b": {<br>    "number": 2<br>  },<br>  "ru-central1-c": {<br>    "number": 3<br>  }<br>}</pre> | no |
-| <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | Enter vpc\_id. Default value = default in YC | `string` | `""` | no |
+| <a name="input_subnets"></a> [subnets](#input\_subnets) | zone name + number for subntes creation in each av zone | <pre>map(object({<br>    number = number<br>  }))</pre> | <pre>{<br>  "ru-central1-a": {<br>    "number": 1<br>  },<br>  "ru-central1-b": {<br>    "number": 2<br>  },<br>  "ru-central1-c": {<br>    "number": 3<br>  }<br>}</pre> | no |
+| <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | enter vpc\_id. default value = default in YC | `string` | `""` | no |
 
 ## Outputs
 

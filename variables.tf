@@ -40,13 +40,13 @@ variable "create_vpc" {
 }
 
 variable "vpc_id" {
-  description = "Enter vpc_id. Default value = default in YC"
+  description = "enter vpc_id. default value = default in YC"
   type        = string
   default     = ""
 }
 
 variable "networks" {
-  description = "map из базовых сетей для распределения в зонах доступности"
+  description = "map for base network subnets"
   type = map(object({
     base_cidr_block = string
   }))
@@ -54,7 +54,7 @@ variable "networks" {
 }
 
 variable "subnets" {
-  description = "map из значений подсетей для базовых сетей из var.networks"
+  description = "zone name + number for subntes creation in each av zone"
   type = map(object({
     number = number
   }))
