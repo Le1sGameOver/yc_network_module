@@ -16,9 +16,21 @@ output "project_vpc_id" {
   value       = yandex_vpc_network.main-vpc[*].id
 }
 
+# Subnets Name
+output "project_subnets_name" {
+  description = "id's of created subnets"
+  value       = [for instance in yandex_vpc_subnet.subnet_creation : instance.name]
+}
+
 # Subnets ID
 output "project_subnets_id" {
   description = "id's of created subnets"
-  value       = [for instance in yandex_vpc_subnet.subnet_creation: instance.id]
+  value       = [for instance in yandex_vpc_subnet.subnet_creation : instance.id]
+}
+
+# Subnets CIDR
+output "project_subnets_cidr" {
+  description = "id's of created subnets"
+  value       = [for instance in yandex_vpc_subnet.subnet_creation : instance.v4_cidr_blocks]
 }
 
