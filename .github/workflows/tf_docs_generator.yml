@@ -13,7 +13,7 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
       - name: Recreate README.md
-        uses: terraform-docs/gh-actions@18dc76d9b2e3c746cf6f8e073c7fa7df16dcf620
+        uses: terraform-docs/gh-actions@v1.0.1
         with:
           working-dir: .
           output-file: README.md
