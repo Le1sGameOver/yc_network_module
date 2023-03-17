@@ -13,7 +13,7 @@ jobs:
 
     steps:
     - name: Check out code
-      uses: actions/checkout@main
+      uses: actions/checkout@v3
     - name: Lint Terraform
       uses: actionshub/terraform-lint@main    
 
