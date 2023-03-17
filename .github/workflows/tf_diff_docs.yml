@@ -15,7 +15,7 @@ jobs:
     - name: Check out code
       uses: actions/checkout@main
     - name: Lint Terraform
-      uses: actionshub/terraform-lint-with-diff@master    
+      uses: actionshub/terraform-lint@main    
 
   docs:
     runs-on: ubuntu-latest
