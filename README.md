@@ -44,8 +44,8 @@ No modules.
 |------|-------------|
 | <a name="output_project_active_labels"></a> [project\_active\_labels](#output\_project\_active\_labels) | lables that you are created |
 | <a name="output_project_folder_id"></a> [project\_folder\_id](#output\_project\_folder\_id) | id of existing or created folder |
-| <a name="output_project_subnets_cidr"></a> [project\_subnets\_cidr](#output\_project\_subnets\_cidr) | id's of created subnets |
+| <a name="output_project_subnets_cidr"></a> [project\_subnets\_cidr](#output\_project\_subnets\_cidr) | cidr blocks of created subnets |
 | <a name="output_project_subnets_id"></a> [project\_subnets\_id](#output\_project\_subnets\_id) | id's of created subnets |
-| <a name="output_project_subnets_name"></a> [project\_subnets\_name](#output\_project\_subnets\_name) | id's of created subnets |
+| <a name="output_project_subnets_name"></a> [project\_subnets\_name](#output\_project\_subnets\_name) | name of created subnets |
 | <a name="output_project_vpc_id"></a> [project\_vpc\_id](#output\_project\_vpc\_id) | id of existing or created vpc |
 <!-- END_TF_DOCS -->
