@@ -1,5 +1,5 @@
 module "yc_network_module" {
-  source        = "github.com/Le1sGameOver/yc_network_module.git@v0.1.8"
+  source        = "github.com/Le1sGameOver/yc_network_module?ref=v0.2.1"
   project_name = "hd"
   environment  = "prod"
   resource_tags = {
