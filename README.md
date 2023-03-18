@@ -52,5 +52,5 @@ No modules.
 
 <!-- BEGIN_EXPLANATION -->
 ## Logic of behavior
-
+![yc_network_module](yc_network_module.drawio.png)
 <!-- END_EXPLANATION -->
