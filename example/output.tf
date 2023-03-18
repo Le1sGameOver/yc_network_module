@@ -11,13 +11,13 @@ output "project_vpc_id" {
 }
 
 output "project_subnets_name" {
-    value = module.yc_network_module.project_subnets_name
+  value = module.yc_network_module.project_subnets_name
 }
 
 output "project_subnets_id" {
-    value = module.yc_network_module.project_subnets_id
+  value = module.yc_network_module.project_subnets_id
 }
 
 output "project_subnets_cidr" {
-    value = module.yc_network_module.project_subnets_cidr
+  value = module.yc_network_module.project_subnets_cidr
 }
