@@ -5,7 +5,7 @@ variable "project_name" {
   default     = ""
   # regexall return the COUNT of how many matches the regex found 0 == 0 > true
   validation {
-    condition     = length(var.project_name) <= 8 && length(regexall("[^a-zA-Z0-9-]", var.project_name)) == 0
+    condition     = length(var.project_name) <= 15 && length(regexall("[^a-zA-Z0-9-]", var.project_name)) == 0
     error_message = "The project_name tag must be no more than 8 characters, and only contain letters, numbers, and hyphens."
   }
 }
@@ -16,7 +16,7 @@ variable "environment" {
   default     = ""
   # regexall return the COUNT of how many matches the regex found 0 == 0 > true
   validation {
-    condition     = length(var.environment) <= 8 && length(regexall("[^a-zA-Z0-9-]", var.environment)) == 0
+    condition     = length(var.environment) <= 10 && length(regexall("[^a-zA-Z0-9-]", var.environment)) == 0
     error_message = "The environment tag must be no more than 8 characters, and only contain letters, numbers, and hyphens.ue"
   }
 }
