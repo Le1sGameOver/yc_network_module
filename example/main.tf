@@ -1,9 +1,9 @@
 module "yc_network_module" {
-  source       = "github.com/Le1sGameOver/yc_network_module?ref=v0.2.1"
-  project_name = "hd"
+  source       = "git::https://github.com/l-e-g-o/yc_network_module.git?ref=v1.0.1"
+  project_name = "main"
   environment  = "prod"
   resource_tags = {
-    author = "a.kharkin@skytechnic.aero"
+    author = "your.email@here.com"
   }
   create_folder = true
   create_vpc    = true
